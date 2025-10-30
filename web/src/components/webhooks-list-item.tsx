@@ -20,14 +20,14 @@ export function WebhooksListItem({ webhook }: WebhooksListItemProps) {
   const { mutate: deleteWebhook } = useMutation({
     mutationFn: async (id: string) => {
       await fetch(`http://localhost:3333/api/webhooks/${id}`, {
-        method: 'DELETE'
+        method: 'DELETE',
       })
     },
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ['webhooks']
+        queryKey: ['webhooks'],
       })
-    }
+    },
   })
 
   return (
