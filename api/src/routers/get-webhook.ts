@@ -1,6 +1,6 @@
 import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod'
 import { z } from 'zod'
-import { createSelectSchema } from "drizzle-zod"
+import { createSelectSchema } from 'drizzle-zod'
 import { webhooks } from '@/db/schema'
 import { db } from '@/db'
 import { eq } from 'drizzle-orm'
@@ -13,11 +13,11 @@ export const getWebhook: FastifyPluginAsyncZod = async (app) => {
         summary: 'Get a specific webhook by ID',
         tags: ['Webhooks'],
         params: z.object({
-          id: z.uuidv7()
+          id: z.uuidv7(),
         }),
         response: {
           200: createSelectSchema(webhooks),
-          404: z.object({ message: z.string() })
+          404: z.object({ message: z.string() }),
         },
       },
     },

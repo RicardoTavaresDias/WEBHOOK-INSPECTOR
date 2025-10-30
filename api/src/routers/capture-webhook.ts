@@ -12,7 +12,7 @@ export const captureWebhook: FastifyPluginAsyncZod = async (app) => {
         tags: ['External'],
         hide: true,
         response: {
-          201: z.object({ id: z.uuidv7() })
+          201: z.object({ id: z.uuidv7() }),
         },
       },
     },
@@ -27,9 +27,10 @@ export const captureWebhook: FastifyPluginAsyncZod = async (app) => {
       let body: string | null = null
 
       if (request.body) {
-        body = typeof request.body === "string"
-          ? request.body
-          : JSON.stringify(request.body, null, 2)
+        body =
+          typeof request.body === 'string'
+            ? request.body
+            : JSON.stringify(request.body, null, 2)
       }
 
       const pathname = new URL(request.url).pathname.replace('/capture', '')
@@ -37,8 +38,8 @@ export const captureWebhook: FastifyPluginAsyncZod = async (app) => {
       const headers = Object.fromEntries(
         Object.entries(request.headers).map(([key, value]) => [
           key,
-          Array.isArray(value) ? value.join(', ') : value || ''
-        ])
+          Array.isArray(value) ? value.join(', ') : value || '',
+        ]),
       )
 
       const result = await db
@@ -50,9 +51,9 @@ export const captureWebhook: FastifyPluginAsyncZod = async (app) => {
           contentLength,
           body,
           headers,
-          pathname
+          pathname,
         })
-        .returning() 
+        .returning()
 
       return replay.send({ id: result[0].id })
     },
