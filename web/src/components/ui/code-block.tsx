@@ -30,6 +30,7 @@ export function CodeBlock({
         className,
       )}
       {...props}
+      id="scrollBar"
     >
       <div
         className="[&_pre]:p-4 [&_pre]:text-sm [&_pre]:font-mono [&_pre]:leading-relaxed"

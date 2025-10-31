@@ -45,7 +45,7 @@ export function WebhookDetails({ id }: WebhookDetailsProps) {
         ip={data.ip}
         createAt={data.createAt}
       />
-      <div className="flex-1 overflow-y-auto">
+      <div className="flex-1 overflow-y-auto" id="scrollBar">
         <div className="space-y-6 p-6">
           <div className="space-y-4">
             <SectionTitle>Request Overview</SectionTitle>

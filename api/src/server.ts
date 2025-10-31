@@ -13,6 +13,7 @@ import { env } from './env'
 import { getWebhook } from './routers/get-webhook'
 import { deleteWebhook } from './routers/delete-webhook'
 import { captureWebhook } from './routers/capture-webhook'
+import { generateHandler } from './routers/generate-handler'
 
 const app = fastify().withTypeProvider<ZodTypeProvider>()
 
@@ -44,6 +45,7 @@ app.register(listWebhooks)
 app.register(getWebhook)
 app.register(deleteWebhook)
 app.register(captureWebhook)
+app.register(generateHandler)
 
 app.listen({ port: env.PORT, host: '0.0.0.0' }).then(() => {
   console.log('🔥 HTTP server running on http://localhost:3333')
